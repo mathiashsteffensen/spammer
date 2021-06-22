@@ -1,3 +1,5 @@
-import { spam } from "./spammer.js";
+import { Spammer } from "./spammer.js";
 
-spam(["http://localhost:4000"], 1500, 10)
+const spammer = new Spammer()
+
+spammer.execute(["http://localhost:4000"], 1500, 10)

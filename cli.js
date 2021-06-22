@@ -1,4 +1,4 @@
-import { spam } from "./spammer.js"
+import { Spammer } from "./spammer.js"
 import yargs from "yargs";
 
 (async () => {
@@ -11,6 +11,8 @@ import yargs from "yargs";
     const urls = args.target.split(",")
     const reqsPerSec = args.reqs || 20
     const secsToRun = args.secs || 10
+    
+    const spammer = new Spammer()
 
-    await spam(urls, reqsPerSec, secsToRun)
+    await spammer.execute(urls, reqsPerSec, secsToRun)
 })()
