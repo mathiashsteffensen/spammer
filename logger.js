@@ -2,8 +2,13 @@ export class Logger {
     hasLoggedServerCrash = false
     hasLoggedServerBlock = false
 
+    // Extend methods from console object
+    log = console.log
+    time = console.time
+    timeEnd = console.timeEnd
+
     line(...strings) {
-        console.log(`${strings.join(" ")}\n`)
+        this.log(`${strings.join(" ")}\n`)
     }
 
     serverCrash(requestsRun, statusCode, target) {
@@ -16,11 +21,5 @@ export class Logger {
         this.line(`The server responded with a status ${statusCode} which indicates the target webserver at ${target} may have blocked your IP address.`)
         this.line(`So far ${requestsRun} requests have been sent`)
         this.hasLoggedServerBlock = true
-    }
-
-    async sleep(timeOut) {
-        return new Promise((resolve) => {
-            setTimeout(resolve, timeOut*1000)
-        })
     }
 }

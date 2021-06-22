@@ -11,7 +11,7 @@ export async function spam(urls, reqsPerSecond, secsToRun) {
     let requestsSent = 0
 
     for (let url of urls) {
-        console.time("spam")
+        log.time("spam")
         timeOutIds.push(setInterval(async () => {
             for (let i = 0; i < reqsPerSecond / urls.length; i++) fetch(url).then(res => {
                 if (res.status >= 500) {
@@ -22,14 +22,14 @@ export async function spam(urls, reqsPerSecond, secsToRun) {
                 if (res.status >= 400) {
                     if (!log.hasLoggedServerBlock) log.serverBlock(requestsSent, res.status, url)
                 }
-            }).catch(err => {
-
             })
+
             requestsSent += reqsPerSecond / urls.length
+
             if (requestsSent >= reqsPerSecond * secsToRun) {
-                console.timeEnd("spam")
-                console.log(requestsSent)
-                clearInterval(timeOutIds[0])
+                log.timeEnd("spam")
+                log.line(requestsSent)
+                timeOutIds.forEach(clearTimeout)
             }
         }, 1000))
     }
