@@ -1,0 +1,11 @@
+{
+  "name": "spammer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "license": "MIT",
+  "dependencies": {
+    "isomorphic-fetch": "^3.0.0",
+    "yargs": "^17.0.1"
+  }
+}
