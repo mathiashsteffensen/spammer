@@ -28,7 +28,6 @@ export class Spammer {
     _handleResponse(res) {
         if (res.status >= 500) {
             if (!this.log.hasLoggedServerCrash) this.log.serverCrash(this.requestsSent, res.status, url)
-            return;
         }
 
         if (res.status >= 400) {
